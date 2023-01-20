@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OptMail;
 use App\Models\Customer;
 use App\Models\User;
+use App\Notifications\OptNotification;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class CustomerController extends Controller
 {
@@ -71,8 +75,13 @@ class CustomerController extends Controller
         $customer->contact_no = $request->contact_no;
         $customer->company_name = $request->company_name;
         $customer->address = $request->address;
-        $customer->user_id = $request->user_id;
+        $customer->user_id = Auth::user()->id;
         $customer->save();
+        $otp = rand(1000,9999);
+        $data = [
+            "message" => "Hello $customer->name, your otp is $otp, please don't share with anyone else"
+        ];
+        Notification::send($customer,new OptNotification($data));
         return redirect()->back();
 
     }

@@ -81,7 +81,8 @@ class TransectionController extends Controller
         $services = Service::all(); //all servicer
         $customers = Customer::all(); // all customer
         $data = Customer::with('services')->get();
-        return $data;
+        // return $data;
+
         return view('backend.transection.edit',compact('services','customers','data'));
     }
 
