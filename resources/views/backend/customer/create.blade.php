@@ -46,17 +46,6 @@
                                 <input id="address" class="form-control" type="text" name="address">
                             </div>
                         </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="user_id">User Email</label>
-                                <select id="user_id" class="form-control" name="user_id">
-                                    @foreach ($users as $user)
-                                        <option value="{{ $user->id }}">{{ $user->email }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Save Record</button>
                 </form>

@@ -80,10 +80,11 @@ class TransectionController extends Controller
 
         $services = Service::all(); //all servicer
         $customers = Customer::all(); // all customer
-        $data = Customer::with('services')->get();
+        $customer = Customer::find($id);
+        $data=  $customer->services;
         // return $data;
 
-        return view('backend.transection.edit',compact('services','customers','data'));
+        return view('backend.transection.edit',compact('services','customers','customer','data'));
     }
 
     /**
@@ -95,17 +96,14 @@ class TransectionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // return dd($request->all());
         $customer = Customer::find($id);
-        $customer = Customer::where('id',$request->customer_id)->first();
-        // return $customer;
         $start_date = $request->start_date;
         $update_date = $request->update_date;
         $fee = $request->fee;
         $year = $request->year;
         $user_id = Auth::user()->id;
         $renew_date = Carbon::createFromFormat('Y-m-d', $start_date)->addYear($year);
-        $customer->services()->sync($request->service_id,["start_date" => $start_date,"update_date" => $update_date,"fee" => $fee,"year"=>$year,"renew_date" => $renew_date,"user_id" =>$user_id]);
+        $customer->services()->syncWithPivotValues($request->service_id,["start_date" => $start_date,"update_date" => $update_date,"fee" => $fee,"year"=>$year,"renew_date" => $renew_date,"user_id" =>$user_id]);
         return redirect()->back();
     }
 

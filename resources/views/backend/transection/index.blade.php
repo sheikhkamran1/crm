@@ -23,7 +23,7 @@
                                                 <th>Update Date</th>
                                                 <th>Year</th>
                                                 <th>Renew Date</th>
-                                                <th>Action</th>
+                                                <th>Fee</th>
                                             </tr>
                                             @foreach ($customer->services as $service)
                                                 <tr>
@@ -32,12 +32,13 @@
                                                     <td>{{ $service->pivot['update_date'] }}</td>
                                                     <td>{{ $service->pivot['year'] }}</td>
                                                     <td>{{ $service->pivot['renew_date'] }}</td>
-                                                    <td>
-                                                    <a href="{{ route('transection.edit',$service->id) }}" class="btn btn-primary">Edit</a>
-                                                    </td>
+                                                    <td>{{ $service->pivot['fee'] }}</td>
+
                                                 </tr>
                                             @endforeach
                                         </table>
+
+                                        <a href="{{ route('transection.edit',$customer->id) }}">Edit</a>
                                     </address>
                                 </div>
                             </div>

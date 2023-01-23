@@ -80,11 +80,11 @@ class CustomerController extends Controller
         $customer->address = $request->address;
         $customer->user_id = Auth::user()->id;
         $customer->save();
-        $otp = rand(1000,9999);
-        $data = [
-            "message" => "Hello $customer->name, your otp is $otp, please don't share with anyone else"
-        ];
-        Notification::send($customer,new OptNotification($data));
+        // $otp = rand(1000,9999);
+        // $data = [
+        //     "message" => "Hello $customer->name, your otp is $otp, please don't share with anyone else"
+        // ];
+        // Notification::send($customer,new OptNotification($data));
         return redirect()->back();
 
     }
