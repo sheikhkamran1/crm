@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('customer', CustomerController::class);
     Route::resource('service', ServiceController::class);
     Route::resource('transection', TransectionController::class);
-    Route::get('/search', [CustomerController::class,'searchcustomer']);
+    Route::get('/search', [CustomerController::class,'index']);
 });
 
 //backend

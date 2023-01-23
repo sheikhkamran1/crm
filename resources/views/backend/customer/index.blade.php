@@ -3,21 +3,23 @@
         <div class="card">
             <div class="card-header">
                 <a href="{{ route('customer.create') }}" class="btn btn-primary">Add Customer</a>
-                {{-- <form class="form-inline ml-auto">
+                <form class="form-inline ml-auto">
                     <div class="search-element">
                         <form action="/search" method="get">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search"
+                            <input class="form-control" type="search" value="{{ $search }}" placeholder="Search" aria-label="Search"
                                 data-width="200" name="q">
                             <button class="btn" type="submit">
                                 <i class="fas fa-search"></i>
                             </button>
                         </form>
                     </div>
-                </form> --}}
-                <form action="/search" method="get">
-                    <input type="search" name="q">
-                    <button type="submit">Search</button>
                 </form>
+                {{-- <form action="/search" method="get" class="ml-auto">
+                    <input type="search" name="q" type="search" placeholder="Search">
+                    <button type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form> --}}
             </div>
             <div class="card-body">
                 <table class="table dataTable table-striped dataTable no-footer" id="table-1" role="grid"

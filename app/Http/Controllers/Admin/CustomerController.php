@@ -25,32 +25,57 @@ class CustomerController extends Controller
     //  public $request;
      public function searchcustomer()
      {
-        $this->words = explode(' ', request()->q);
+        // $this->words = explode(' ', request()->q);
 
-        $customer = DB::table('customer')->where(function ($query) {
-            foreach($this->words as $word) {
-                $query->orWhere('name', 'LIKE', '%' . $word . '%');
-            }
-        })->orWhere(function ($query) {
-            foreach($this->words as $word) {
-                $query->orWhere('address', 'LIKE', '%' . $word . '%');
-            }
-        })->get();
+        // $customer = DB::table('customer')->where(function ($query) {
+        //     foreach($this->words as $word) {
+        //         $query->orWhere('name', 'LIKE', '%' . $word . '%');
+        //     }
+        // })->orWhere(function ($query) {
+        //     foreach($this->words as $word) {
+        //         $query->orWhere('address', 'LIKE', '%' . $word . '%');
+        //     }
+        // })->get();
 
-        // $customer = Customer::where("name",'like',"%". request()->q ."%")->get();
         // dd(request()->customer);
 
         // $customer = Customer::all();
-        return $customer;
         // dd($customer);
         // dd(request()->customer);
 
      }
 
-    public function index()
+    public function index(Request $request)
     {
-        $customer = Customer::all();
-        return view('backend.customer.index',compact('customer'));
+        $customers = Customer::query();
+        $search = $request->q;
+        if($request->get('q')){
+              $this->words = explode(' ', request()->q);
+
+            $customer = $customers->where(function ($query) {
+                foreach($this->words as $word) {
+                    $query->orWhere('name', 'LIKE', '%' . $word . '%');
+                }
+            })->orWhere(function ($query) {
+                foreach($this->words as $word) {
+                    $query->orWhere('address', 'LIKE', '%' . $word . '%');
+                }
+            })->get();
+
+             $customer = $customers->where("name",'like',"%". request()->q ."%")->get();
+        }else{
+            $customer = $customers->get();
+        }
+
+
+    // return $customer;
+        return view('backend.customer.index',compact('customer','search'));
+
+
+        // // return $customersearched;
+
+        // $customer = Customer::all();
+        // return view('backend.customer.index',compact('customer',));
     }
 
     /**
