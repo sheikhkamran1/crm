@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Notifications\OptNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 
@@ -21,30 +22,33 @@ class CustomerController extends Controller
      */
 
      public $words;
-     public $request;
+    //  public $request;
      public function searchcustomer()
      {
-        // $this->words = explode(' ', $this->request->q);
+        $this->words = explode(' ', request()->q);
 
-        // $customer = DB::table('customer')->where(function ($query) {
-        //     foreach($this->words as $word) {
-        //         $query->orWhere('profession', 'LIKE', '%' . $word . '%');
-        //     }
-        // })->orWhere(function ($query) {
-        //     foreach($this->words as $word) {
-        //         $query->orWhere('country', 'LIKE', '%' . $word . '%');
-        //     }
-        // })->get();
+        $customer = DB::table('customer')->where(function ($query) {
+            foreach($this->words as $word) {
+                $query->orWhere('name', 'LIKE', '%' . $word . '%');
+            }
+        })->orWhere(function ($query) {
+            foreach($this->words as $word) {
+                $query->orWhere('address', 'LIKE', '%' . $word . '%');
+            }
+        })->get();
 
-        // $customer = Customer::where("name",'like',"%".$this->request->q ."%")->get();
+        // $customer = Customer::where("name",'like',"%". request()->q ."%")->get();
+        // dd(request()->customer);
 
-        $customer = Customer::all();
+        // $customer = Customer::all();
         return $customer;
+        // dd($customer);
+        // dd(request()->customer);
+
      }
 
     public function index()
     {
-        // return 'jj';
         $customer = Customer::all();
         return view('backend.customer.index',compact('customer'));
     }
@@ -56,7 +60,6 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        // return 'jj';
         $users = User::all();
         return view('backend.customer.create',compact('users'));
     }

@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <a href="{{ route('customer.create') }}" class="btn btn-primary">Add Customer</a>
-                <form class="form-inline ml-auto">
+                {{-- <form class="form-inline ml-auto">
                     <div class="search-element">
                         <form action="/search" method="get">
                             <input class="form-control" type="search" placeholder="Search" aria-label="Search"
@@ -13,7 +13,7 @@
                             </button>
                         </form>
                     </div>
-                </form>
+                </form> --}}
                 <form action="/search" method="get">
                     <input type="search" name="q">
                     <button type="submit">Search</button>
