@@ -21,55 +21,32 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public $words;
-    //  public $request;
-     public function searchcustomer()
-     {
-        // $this->words = explode(' ', request()->q);
-
-        // $customer = DB::table('customer')->where(function ($query) {
-        //     foreach($this->words as $word) {
-        //         $query->orWhere('name', 'LIKE', '%' . $word . '%');
-        //     }
-        // })->orWhere(function ($query) {
-        //     foreach($this->words as $word) {
-        //         $query->orWhere('address', 'LIKE', '%' . $word . '%');
-        //     }
-        // })->get();
-
-        // dd(request()->customer);
-
-        // $customer = Customer::all();
-        // dd($customer);
-        // dd(request()->customer);
-
-     }
-
+    public $words;
     public function index(Request $request)
     {
         $customers = Customer::query();
         $search = $request->q;
-        if($request->get('q')){
-              $this->words = explode(' ', request()->q);
+        if ($request->get('q')) {
+            $this->words = explode(' ', request()->q);
 
             $customer = $customers->where(function ($query) {
-                foreach($this->words as $word) {
+                foreach ($this->words as $word) {
                     $query->orWhere('name', 'LIKE', '%' . $word . '%');
                 }
             })->orWhere(function ($query) {
-                foreach($this->words as $word) {
+                foreach ($this->words as $word) {
                     $query->orWhere('address', 'LIKE', '%' . $word . '%');
                 }
             })->get();
 
-             $customer = $customers->where("name",'like',"%". request()->q ."%")->get();
-        }else{
+            $customer = $customers->where("name", 'like', "%" . request()->q . "%")->get();
+        } else {
             $customer = $customers->get();
         }
 
 
-    // return $customer;
-        return view('backend.customer.index',compact('customer','search'));
+        // return $customer;
+        return view('backend.customer.index', compact('customer', 'search'));
 
 
         // // return $customersearched;
@@ -86,7 +63,7 @@ class CustomerController extends Controller
     public function create()
     {
         $users = User::all();
-        return view('backend.customer.create',compact('users'));
+        return view('backend.customer.create', compact('users'));
     }
 
     /**
@@ -97,21 +74,28 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'contact_no' => 'required',
+            'company_name' => 'required',
+            'address' => 'required',
+        ]);
         $customer = new Customer();
         $customer->name = $request->name;
         $customer->email = $request->email;
         $customer->contact_no = $request->contact_no;
         $customer->company_name = $request->company_name;
         $customer->address = $request->address;
-        $customer->user_id = Auth::user()->id;
         $customer->save();
-        $otp = rand(1000,9999);
+        alert()->success('Successful','The record is added successfully')->timerProgressBar();
+        $otp = rand(1000, 9999);
         $data = [
             "message" => "Hello $customer->name, your otp is $otp, please don't share with anyone else"
         ];
-        Notification::send($customer,new OptNotification($data));
+        Notification::send($customer, new OptNotification($data));
         return redirect()->back();
-
     }
 
     /**
@@ -135,7 +119,7 @@ class CustomerController extends Controller
     {
         $customer = Customer::find($id);
         $users = User::all();
-        return view("backend.customer.edit",compact('customer','users'));
+        return view("backend.customer.edit", compact('customer', 'users'));
     }
 
     /**
@@ -166,6 +150,7 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $customer = Customer::find($id);
+        $customer->delete();
     }
 }

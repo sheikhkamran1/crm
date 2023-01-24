@@ -18,9 +18,13 @@
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="/assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
 </head>
 
 <body>
+    @include('sweetalert::alert')
+
     <div class="loader"></div>
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
@@ -38,11 +42,11 @@
                             <form class="form-inline mr-auto">
                                 <div class="search-element">
                                     <form action="/search" method="get">
-                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search"
-                                        data-width="200" name="q">
-                                    <button class="btn" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
+                                        <input class="form-control" type="search" placeholder="Search"
+                                            aria-label="Search" data-width="200" name="q">
+                                        <button class="btn" type="submit">
+                                            <i class="fas fa-search"></i>
+                                        </button>
                                     </form>
                                 </div>
                             </form>
@@ -97,7 +101,8 @@
                                     </span>
                                 </a> <a href="#" class="dropdown-item"> <span
                                         class="dropdown-item-avatar text-white">
-                                        <img alt="image" src="/assets/img/users/user-3.png" class="rounded-circle">
+                                        <img alt="image" src="/assets/img/users/user-3.png"
+                                            class="rounded-circle">
                                     </span> <span class="dropdown-item-desc"> <span class="message-user">Jalpa
                                             Joshi</span> <span class="time messege-text">Please do as specify.
                                             Let me
@@ -198,10 +203,10 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <x-dropdown-link :href="route('logout')" class="dropdown-item has-icon text-danger"
-                                        onclick="event.preventDefault();
+                                    onclick="event.preventDefault();
                                                     this.closest('form').submit();">
-                                <i class="fas fa-sign-out-alt"></i>
-                                {{ __('Log Out') }}
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
                         </div>
@@ -211,7 +216,7 @@
             <x-sidebar />
             <!-- Main Content -->
             <div class="main-content">
-             {{ $slot }}
+                {{ $slot }}
             </div>
             <footer class="main-footer">
                 <div class="footer-left">
@@ -238,6 +243,10 @@
     <script src="/assets/js/scripts.js"></script>
     <!-- Custom JS File -->
     <script src="/assets/js/custom.js"></script>
+    <script>
+        link rel = "stylesheet"
+        href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" / >
+    </script>
 </body>
 
 

@@ -14,49 +14,60 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name">Name</label>
+                                <label for="name">Enter Customer Name <span class="text-danger">*</span></label>
                                 <input id="name" class="form-control" type="text" name="name">
                             </div>
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
+
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input id="email" class="form-control" type="text" name="email">
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="contact_no">Contact_no.</label>
-                                <input id="contact_no" class="form-control" type="text" name="contact_no">
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="company_name">Company_name</label>
+                                <label for="company_name">Company_name <span class="text-danger">*</span></label>
                                 <input id="company_name" class="form-control" type="text" name="company_name">
                             </div>
+                             @error('name')
+                            <?php
+                            alert()->error('Error','Please fill all the fields');
+                            ?>
+                            @enderror
+                            @error('company_name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="address">Address</label>
+                                <label for="email">Email <span class="text-danger">*</span></label>
+                                <input id="email" class="form-control" type="text" name="email"s>
+                            </div>
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="contact_no">Contact_no. <span class="text-danger">*</span></label>
+                                <input id="contact_no" class="form-control" type="text" name="contact_no">
+                            </div>
+                            @error('contact_no')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="address">Address <span class="text-danger">*</span></label>
                                 <input id="address" class="form-control" type="text" name="address">
                             </div>
+                            @error('address')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="user_id">User Email</label>
-                                <select id="user_id" class="form-control" name="user_id">
-                                    @foreach ($users as $user)
-                                        <option value="{{ $user->id }}">{{ $user->email }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Save Record</button>
                 </form>

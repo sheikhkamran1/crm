@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\toast;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ServiceController extends Controller
 {
@@ -16,7 +18,7 @@ class ServiceController extends Controller
     public function index()
     {
         $service = Service::all();
-        return view('backend.service.index',compact('service'));
+        return view('backend.service.index', compact('service'));
     }
 
     /**
@@ -37,9 +39,13 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+        ]);
         $service = new Service();
         $service->name = $request->name;
         $service->save();
+        alert()->success('Successful','The record is added successfully')->timerProgressBar();
         return redirect()->back();
     }
 
@@ -63,7 +69,7 @@ class ServiceController extends Controller
     public function edit($id)
     {
         $service = Service::find($id);
-        return view('backend.service.edit',compact('service'));
+        return view('backend.service.edit', compact('service'));
     }
 
     /**
@@ -89,8 +95,8 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-       $service = Service::find($id);
-       $service->delete();
-       return redirect()->back();
+        $service = Service::find($id);
+        $service->delete();
+        return redirect()->back();
     }
 }

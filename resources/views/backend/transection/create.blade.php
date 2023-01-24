@@ -22,7 +22,12 @@
                                     @endforeach
                                 </select>
                             </div>
+
+                            @error('customer_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
+
 
                         <div class="col-md-6">
                             <div class="form-group">
@@ -34,19 +39,30 @@
                                 </select>
                             </div>
                         </div>
+                        @error('service_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="start_date">Start_date.</label>
-                                <input id="start_date" class="form-control" type="date" name="start_date" >
+                                <input id="start_date" class="form-control" type="date" name="start_date">
                             </div>
+                            @error('start_date')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
+
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="update_date">Update_date</label>
                                 <input id="update_date" class="form-control" type="date" name="update_date">
                             </div>
+                            @error('update_date')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+
                         </div>
 
                         <div class="col-md-6">
@@ -54,14 +70,22 @@
                                 <label for="fee">Fee</label>
                                 <input id="fee" class="form-control" type="number" name="fee">
                             </div>
+                            @error('fee')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
+
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="year">Year</label>
                                 <input id="year" class="form-control" type="number" name="year">
                             </div>
+                            @error('year')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
+
 
 
 

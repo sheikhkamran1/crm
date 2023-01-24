@@ -14,9 +14,14 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="name">Name</label>
+                                <label for="name">Name<span class="text-danger">*</span></label>
                                 <input id="name" class="form-control" type="text" name="name">
                             </div>
+                            @error('name')
+                            <?php
+                            alert()->error('Error','Name Field is required');
+                            ?>
+                            @enderror
                         </div>
 
                     </div>

@@ -8,7 +8,7 @@
                 <div class="row">
 
                 </div>
-                <form action="{{ route('service.update',[$service->id]) }}" method="post">
+                <form action="{{ route('service.update', [$service->id]) }}" method="post">
                     @csrf
                     @method('put')
 
@@ -16,7 +16,8 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input id="name" class="form-control" type="text" name="name" value="{{ $service->name }}">
+                                <input id="name" class="form-control" type="text" name="name"
+                                    value="{{ $service->name }}">
                             </div>
                         </div>
 

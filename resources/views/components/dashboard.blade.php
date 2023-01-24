@@ -1,15 +1,16 @@
 <section class="section">
     <div class="row ">
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <a href="/customer" class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-decoration: none">
             <div class="card">
                 <div class="card-statistic-4">
                     <div class="align-items-center justify-content-between">
                         <div class="row ">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                 <div class="card-content">
-                                    <h5 class="font-15">New Booking</h5>
-                                    <h2 class="mb-3 font-18">258</h2>
-                                    <p class="mb-0"><span class="col-green">10%</span> Increase</p>
+                                    <h5 class="font-15">Total Customers</h5>
+                                    <h2 class="mb-3 font-18 text-success">
+                                        {{ App\Models\Customer::totalCustomerNumber() }}</h2>
+                                    {{-- <p class="mb-0"><span class="col-green">10%</span> Increase</p> --}}
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
@@ -21,17 +22,18 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        </a>
+        <a href="/service" class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-decoration: none">
             <div class="card">
                 <div class="card-statistic-4">
                     <div class="align-items-center justify-content-between">
                         <div class="row ">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                 <div class="card-content">
-                                    <h5 class="font-15"> Customers</h5>
-                                    <h2 class="mb-3 font-18">1,287</h2>
-                                    <p class="mb-0"><span class="col-orange">09%</span> Decrease</p>
+                                    <h5 class="font-15">Total Services</h5>
+                                    <h2 class="mb-3 font-18 text-success">
+                                        {{ App\Models\Service::totalCustomerNumber() }}</h2>
+                                    {{-- <p class="mb-0"><span class="col-orange">09%</span> Decrease</p> --}}
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
@@ -43,18 +45,18 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        </a>
+        <a href="/transection" class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-decoration: none">
             <div class="card">
                 <div class="card-statistic-4">
                     <div class="align-items-center justify-content-between">
                         <div class="row ">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                                 <div class="card-content">
-                                    <h5 class="font-15">New Project</h5>
-                                    <h2 class="mb-3 font-18">128</h2>
-                                    <p class="mb-0"><span class="col-green">18%</span>
-                                        Increase</p>
+                                    <h5 class="font-15">Transactions</h5>
+                                    <h2 class="mb-3 font-18 text-success">Show</h2>
+                                    {{-- <p class="mb-0"><span class="col-green">18%</span>
+                                        Increase</p> --}}
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
@@ -66,8 +68,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        </a>
+        {{-- <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="card">
                 <div class="card-statistic-4">
                     <div class="align-items-center justify-content-between">
@@ -673,7 +675,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </section>
 <div class="settingSidebar">
     <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
@@ -701,14 +703,13 @@
                 <h6 class="font-medium m-b-10">Sidebar Color</h6>
                 <div class="selectgroup selectgroup-pills sidebar-color">
                     <label class="selectgroup-item">
-                        <input type="radio" name="icon-input" value="1"
-                            class="selectgroup-input select-sidebar">
+                        <input type="radio" name="icon-input" value="1" class="selectgroup-input select-sidebar">
                         <span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
                             data-original-title="Light Sidebar"><i class="fas fa-sun"></i></span>
                     </label>
                     <label class="selectgroup-item">
-                        <input type="radio" name="icon-input" value="2"
-                            class="selectgroup-input select-sidebar" checked>
+                        <input type="radio" name="icon-input" value="2" class="selectgroup-input select-sidebar"
+                            checked>
                         <span class="selectgroup-button selectgroup-button-icon" data-toggle="tooltip"
                             data-original-title="Dark Sidebar"><i class="fas fa-moon"></i></span>
                     </label>
@@ -745,8 +746,8 @@
             <div class="p-15 border-bottom">
                 <div class="theme-setting-options">
                     <label class="m-b-0">
-                        <input type="checkbox" name="custom-switch-checkbox"
-                            class="custom-switch-input" id="mini_sidebar_setting">
+                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
+                            id="mini_sidebar_setting">
                         <span class="custom-switch-indicator"></span>
                         <span class="control-label p-l-10">Mini Sidebar</span>
                     </label>
@@ -755,8 +756,8 @@
             <div class="p-15 border-bottom">
                 <div class="theme-setting-options">
                     <label class="m-b-0">
-                        <input type="checkbox" name="custom-switch-checkbox"
-                            class="custom-switch-input" id="sticky_header_setting">
+                        <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input"
+                            id="sticky_header_setting">
                         <span class="custom-switch-indicator"></span>
                         <span class="control-label p-l-10">Sticky Header</span>
                     </label>

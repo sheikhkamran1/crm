@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TransectionController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Service;
 use App\Models\Transection;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $services = Service::all();
+    return view('dashboard',compact('services'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

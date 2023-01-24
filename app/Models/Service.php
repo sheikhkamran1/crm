@@ -11,6 +11,11 @@ class Service extends Model
 
     public function customers()
     {
-        return $this->belongsToMany(Customer::class)->withPivot('start_date','update_date','fee','year','renew_date','user_id');
+        return $this->belongsToMany(Customer::class)->withPivot('start_date', 'update_date', 'fee', 'year', 'renew_date', 'user_id');
+    }
+
+    public static function totalCustomerNumber()
+    {
+        return self::query()->count('id');
     }
 }
