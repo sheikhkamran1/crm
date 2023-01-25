@@ -22,6 +22,7 @@ class TransectionController extends Controller
     {
         $data = Customer::with('services')->get();
         // return $data;
+        // return $data;
         return view('backend.transection.index', compact('data'));
     }
 
@@ -89,6 +90,7 @@ class TransectionController extends Controller
         $customers = Customer::all(); // all customer
         $customer = Customer::find($id);
         $data =  $customer->services;
+
         return view('backend.transection.edit', compact('services', 'customers', 'customer', 'data'));
     }
 

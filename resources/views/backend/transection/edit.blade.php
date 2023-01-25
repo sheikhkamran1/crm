@@ -35,7 +35,7 @@
                                                     <label for="service_id">Choose Services</label>
                                                     <select id="service_id" class="form-control" name="service_id[]">
                                                         @foreach ($services as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->name }}
+                                                            <option value="{{ $item->id }}" {{ $item->id == $s->id ? 'selected' : '' }}>{{ $item->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
